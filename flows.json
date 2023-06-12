@@ -1,0 +1,90 @@
+[
+    {
+        "id": "36fe8b3a24218901",
+        "type": "tab",
+        "label": "weather alert",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "eee1a78f3212735d",
+        "type": "twitter-credentials",
+        "screen_name": "tiona_org"
+    },
+    {
+        "id": "6c748534fad28ecd",
+        "type": "openweathermap in",
+        "z": "36fe8b3a24218901",
+        "name": "Nairobi weather api",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Nairobi",
+        "country": "Kenya",
+        "language": "en",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "10dbe9c7eb23b419",
+                "ccd9a55f4336d41c"
+            ]
+        ]
+    },
+    {
+        "id": "10dbe9c7eb23b419",
+        "type": "debug",
+        "z": "36fe8b3a24218901",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ccd9a55f4336d41c",
+        "type": "function",
+        "z": "36fe8b3a24218901",
+        "name": "function 1",
+        "func": "if(msg.payload.weather===\"Clear\"){\n    msg.payload = \"Clear skies ahead today.\"\n    return msg;\n} else if (msg.payload.weather === \"Rain\") {\n    msg.payload = \"Rainy skies ahead today.\"\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "228f6144021de67e"
+            ]
+        ]
+    },
+    {
+        "id": "228f6144021de67e",
+        "type": "twitter out",
+        "z": "36fe8b3a24218901",
+        "twitter": "eee1a78f3212735d",
+        "name": "Tweet",
+        "x": 690,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d459cd74c2c15e7d",
+        "type": "comment",
+        "z": "36fe8b3a24218901",
+        "name": "",
+        "info": "136276 Jeremy Munroe 12th June 2023",
+        "x": 280,
+        "y": 460,
+        "wires": []
+    }
+]
